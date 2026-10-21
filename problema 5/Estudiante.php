@@ -1,64 +1,31 @@
 <?php
-
-class Persona
-{
-    protected $nombre;
-    protected $apellido;
-
-    public function __construct($nombre, $apellido)
-    {
-        $this->nombre = $nombre;
-        $this->apellido = $apellido;
-    }
-
-    public function getNombre()
-    {
-        return $this->nombre;
-    }
-
-    public function getApellido()
-    {
-        return $this->apellido;
-    }
-}
+require_once 'Persona.php';
 
 class Estudiante extends Persona
 {
-    protected $indice;
+    protected float $indiceAcademico;
+    protected int $cohorte;
+    protected int $estadoAcademico;   // 0 inactivo, 1 activo, 2 retirado, 3 graduado
+    protected int $modalidadEstudio;  // 1 presencial, 2 virtual, 3 híbrida
 
-    public function __construct($nombre, $apellido, $indice)
-    {
-        parent::__construct($nombre, $apellido);
-        $this->indice = $indice;
+    public function __construct(
+        float $indiceAcademico,
+        int $cohorte,
+        int $estadoAcademico,
+        int $modalidadEstudio,
+        string $nombre,
+        string $apellido,
+        string $fechaNacimiento
+    ) {
+        parent::__construct($nombre, $apellido, $fechaNacimiento);
+        $this->indiceAcademico  = $indiceAcademico;
+        $this->cohorte          = $cohorte;
+        $this->estadoAcademico  = $estadoAcademico;
+        $this->modalidadEstudio = $modalidadEstudio;
     }
 
-    public function getIndice()
-    {
-        return $this->indice;
-    }
+    public function getIndiceAcademico(): float { return $this->indiceAcademico; }
+    public function getCohorte(): int           { return $this->cohorte; }
+    public function getEstadoAcademico(): int   { return $this->estadoAcademico; }
+    public function getModalidadEstudio(): int  { return $this->modalidadEstudio; }
 }
-
-class Docente extends Persona
-{
-    protected $departamento;
-
-    public function __construct($nombre, $apellido, $departamento)
-    {
-        parent::__construct($nombre, $apellido);
-        $this->departamento = $departamento;
-    }
-
-    public function getDepartamento()
-    {
-        return $this->departamento;
-    }
-}
-
-// --- Ejemplo de uso ---
-$estudiante = new Estudiante("Juan", "Pérez", 3.5);
-echo "Estudiante: " . $estudiante->getNombre() . " " . $estudiante->getApellido();
-echo " - Índice: " . $estudiante->getIndice() . "<br>";
-
-$docente = new Docente("María", "Gómez", "Sistemas");
-echo "Docente: " . $docente->getNombre() . " " . $docente->getApellido();
-echo " - Departamento: " . $docente->getDepartamento() . "<br>";

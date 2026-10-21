@@ -39,7 +39,6 @@ Se necesita un entorno local con PHP. En mi caso trabajé con **WampServer**, qu
 ```
 Practica-POO/
 ├── img/
-│   └── herencia-persona.png   → diagrama de herencia del Problema #5
 ├── problema1/
 │   ├── Coche.php              → clase padre
 │   ├── CocheDeLujo.php        → clase hija
@@ -84,6 +83,10 @@ Color: negro
 Extras: TV
 ```
 
+**Captura de pantalla:**
+
+![Resultado del Problema 1](img/Problema1.png)
+
 ⚠️ **Error que corregí:** en el enunciado original, `Coche::printCaracteristicas()` llamaba a `$this->getColor;` sin paréntesis. PHP lo interpreta como una propiedad inexistente y lanza `Warning: Undefined property`. Lo correcto es `$this->getColor()`.
 
 ---
@@ -96,6 +99,14 @@ Extras: TV
 |---|---|---|---|
 | Late Static Binding | `static::miFuncion();` | **B** | `static` se resuelve en tiempo de ejecución y apunta a la clase desde la que se hizo la llamada (`B`) |
 | Early Binding | `self::miFuncion();` | **A** | `self` se resuelve donde se escribió el código y siempre apunta a la clase que lo contiene (`A`) |
+
+**Captura con `static::` (resultado: B):**
+
+![Resultado del Problema 2 con static](img/Problema2%20static.png)
+
+**Captura con `self::` (resultado: A):**
+
+![Resultado del Problema 2 con self](img/Problema2%20self.png)
 
 📌 **Conclusión:** usa `static::` cuando quieras que una clase hija pueda cambiar el comportamiento; usa `self::` cuando quieras que siempre se use la versión de la clase donde está escrito el código.
 
@@ -120,6 +131,10 @@ class CocheDeLujo extends Coche {}   // ❌ error
 PHP Fatal error:  Class CocheDeLujo cannot extend final class Coche
 ```
 
+**Captura de pantalla:**
+
+![Resultado del Problema 3](img/Problema3.png)
+
 > El error se produce al cargar el archivo, antes de ejecutar cualquier otra línea. También existe `final` para métodos individuales, que evita que se sobrescriban.
 
 ---
@@ -140,6 +155,10 @@ Usa la constante nativa `M_PI` (más precisa que escribir `3.1416`) y `number_fo
 Perímetro del círculo:   25.13
 ```
 
+**Captura de pantalla:**
+
+![Resultado del Problema 4](img/Problema4.png)
+
 > Con `PI = 3.1416` el área sería 50.2656; con `M_PI` es 50.26548…, y al redondear a dos decimales ambas dan **50.27**.
 
 ---
@@ -148,7 +167,6 @@ Perímetro del círculo:   25.13
 
 Se separan los datos comunes (en `Persona`) de los datos propios de cada rol (en las clases hijas):
 
-![Diagrama de herencia: Persona se extiende en Docente y Estudiante](img/herencia-persona.png)
 
 **`Persona`** (clase base): `nombre`, `apellido`, `fechaNacimiento`.
 
@@ -188,6 +206,10 @@ El docente es: Ana Gómez
 Departamento: Sistemas Computacionales
 Categoría: Titular
 ```
+
+**Captura de pantalla:**
+
+![Resultado del Problema 5](img/Problema%205.png)
 
 ---
 
